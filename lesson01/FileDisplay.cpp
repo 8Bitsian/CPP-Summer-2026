@@ -10,11 +10,48 @@
 */
 
 #include <iostream>  // Allows use of input/output objects (cout, cin)
+#include <fstream>   // Allows creation, reading, and writing of files
 #include <iomanip>   // Allows use of formatting tools
 #include <string>    // Allows use of the string data type
 using namespace std; // Allows use of the standard library w/out std:: prefix
 
+// Function prototypes
+void displayHead(const string& filename);
+
 int main() {
-  // Call functions
-  return 0;  // End program
+  string filename;
+
+  cout << "Enter the name of a file: ";
+  getline(cin, filename);
+
+  displayContent(filename);
+
+  return 0;
+}
+
+void displayContent(const string& filename) {
+  ifstream file(filename);
+  string line;
+  int lineCount = 0;
+
+  if (!file) {
+    cout << "ERROR: Invalid Input - Could not open file \"" << filename << "\".\n";
+    return;
+  }
+
+  cout << "\n --- DISPLAYING FILE ---\n";
+
+  while (getline(file, line) && lineCount < 10) {
+    cout << line << endl;
+    lineCount++;
+
+    // Pause every 24 lines
+    if (lineCount == 24) {
+      cout << "\n--- Press ENTER to continue ---";
+      cin.ignore(numeric_limits<streamsize>::max(), '\n');
+      lineCount = 0;
+    }
+  }
+
+  cout << "\n --- END OF FILE ---\n";
 }
