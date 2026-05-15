@@ -16,7 +16,7 @@
 using namespace std; // Allows use of the standard library w/out std:: prefix
 
 // Function prototypes
-void displayHead(const string& filename);
+void displayContent(const string& filename);
 
 int main() {
   string filename;
