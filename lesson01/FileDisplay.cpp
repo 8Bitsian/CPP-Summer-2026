@@ -11,7 +11,6 @@
 
 #include <iostream>  // Allows use of input/output objects (cout, cin)
 #include <fstream>   // Allows creation, reading, and writing of files
-#include <iomanip>   // Allows use of formatting tools
 #include <string>    // Allows use of the string data type
 using namespace std; // Allows use of the standard library w/out std:: prefix
 
