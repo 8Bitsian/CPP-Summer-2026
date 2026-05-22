@@ -1,4 +1,4 @@
-## 👾 C++-Summer-2026
+## 👾 Cpp-Summer-2026
 
 ℹ️ Coursework and assignments for my C++ 2 class, including weekly exercises and project submissions.<br/>
 *️⃣ The course requires that I utilize JetBrains [CLion](https://www.jetbrains.com/clion/) as my IDE.<br/>
