@@ -10,8 +10,10 @@
 - [Lesson 3](./lesson03/) - More About Classes
 - [Lesson 4](./lesson04/) - Inheritance, Polymorphism, and Virtual Functions
 - [Lesson 5](./lesson05/) - Exceptions and Templates
+- [Midterm Project](./midterm/)
 - [Lesson 6](./lesson06/) - The Standard Template Library
 - [Lesson 7](./lesson07/) - Linked Lists
 - [Lesson 8](./lesson08/) - Stacks and Queues
 - [Lesson 9](./lesson09/) - Recursion
 - [Lesson 10](./lesson10/) - Binary Trees
+- [Final Project](./final/)
