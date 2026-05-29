@@ -5,7 +5,8 @@
 📔 I am referencing [Chapter 12](https://media.pearsoncmg.com/ph/esm/ecs_gaddis_cpp10e_REVEL/cw/#videonotes) of Starting Out with C++: From Control Structures to Objects 10E by Tony Gaddis.<br/>
 
 📂 Files will be listed below:
-- `Min01.cpp` | 5 Minute Interview
-- `Lab01.cpp` | Lab Assignment
+- `C201_1.cpp` | 5 Minute Interview
+- `C202_2.cpp` | Lab Assignment
+- `Germany_Brazil.txt` | Lab Assignment
 
 📹 Watch the [5‑minute interview](https://www.youtube.com/watch?v=negYYQdZIIc)<br/>
