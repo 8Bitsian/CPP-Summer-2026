@@ -8,6 +8,7 @@
 // Header
 #include <iostream>   // Provides console input/output
 #include <string>     // Enables use of std::string
+#inclde <regex>
 using namespace std;  // Allows use of standard names without std:: prefix
 
 class Person {
@@ -45,10 +46,10 @@ class Person {
       if (name == "-1") return "-1";
 
       // Validate input
-      if (regex_match(name, regex("[0-9]+"))) {
+      if (regex_match(phone, regex("[0-9]{4}"))) {
         return phone;
       } else {
-        cout << "ERROR: Invalid Input - Phone must be four digits only (0-9)\n\n";
+        cout << "ERROR: Invalid Input - Phone must be four digits (0-9)\n\n";
       }
     }
   }
@@ -67,7 +68,7 @@ int main() {
     if (phone == "-1") break;
 
     // Output
-    cout << "\nYour name: " << name << endl;
+    cout << "\nYour name:  " << name << endl;
     cout << "Your phone: " << phone << << endl << endl;
   }
 
