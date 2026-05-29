@@ -8,7 +8,7 @@
 // Header
 #include <iostream>   // Provides console input/output
 #include <string>     // Enables use of std::string
-#inclde <regex>
+#include <regex>      // Enables regualr expressions to check text
 using namespace std;  // Allows use of standard names without std:: prefix
 
 // Person{} : Person class collects object name and phone
