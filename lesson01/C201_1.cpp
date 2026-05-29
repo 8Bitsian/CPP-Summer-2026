@@ -46,7 +46,7 @@ class Person {
       getline(cin, phone);
 
       // Check for sentinel
-      if (name == "-1") return "-1";
+      if (phone == "-1") return "-1";
 
       // Validate input
       if (regex_match(phone, regex("[0-9]{4}"))) {
