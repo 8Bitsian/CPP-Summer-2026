@@ -11,7 +11,9 @@
 #inclde <regex>
 using namespace std;  // Allows use of standard names without std:: prefix
 
+// Person{} : Person class collects object name and phone
 class Person {
+  // getName() : Get user input for name
   public string getName() {
     // Declare variable
     string name;
@@ -33,6 +35,7 @@ class Person {
     }
   }
 
+  // getPhone() : Get user input for last 4-digit phone number
   public string getPhone() {
     // Declare variable
     string phone;
