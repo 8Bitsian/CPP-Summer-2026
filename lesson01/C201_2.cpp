@@ -3,7 +3,7 @@
     Lab Assignment: Insert Information
     Directions: Read the Germany_Brazil.txt file and put your name
     and last 4 digits of your phone number on the top of the text.
-    Replace "Gemrany" to "Brazil" and save the file as your first name
+    Replace "Germany" to "Brazil" and save the file as your first name
     and the last four digits (ex. Jane1234.txt)
 */
 
