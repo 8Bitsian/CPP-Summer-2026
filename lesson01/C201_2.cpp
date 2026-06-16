@@ -1,151 +1,194 @@
 /*
     Imani Hollie 05/28/2026
-    Lab Assignment: Insert Information
-    Directions: Read the Germany_Brazil.txt file and put your name
-    and last 4 digits of your phone number on the top of the text.
-    Replace "Germany" to "Brazil" and save the file as your first name
-    and the last four digits (ex. Jane1234.txt)
+    Lesson 1 Lab: Insert & Replace Text
+    Directions: Download the Germany_Brazil.txt file
+    and complete the following:
+        1) Read the file
+        2) Insert your name and the last four digits of
+           your phone number at the top of the text
+        3) Replace every "Germany" with "Brazil"
+        4) Save the new file as your first name and the
+           last four digits (e.g. John1234.txt)
 */
 
-// Header
-#include <iostream>  // Allows use of input/output objects (cout, cin)
-#include <fstream>   // Allows creation, reading, and writing of files
-#include <string>    // Allows use of the string data type
-#include <regex>     // Allows use of regualr expressions to check text
-using namespace std; // Allows use of the standard library w/out std:: prefix
+// HEADER
+#include <iostream>     // Provides console input/output
+#include <fstream>      // Provides file input/output
+#include <string>       // Enables use of std::string
+#include <regex>        // Enables regular expressions to check text
+using namespace std;    // Enables use of standard names w/out std:: prefix
 
-// Person{} : Get name and last four digit phone number
+// CLASSES
+// Person{} : Person class collects object name and phone
 class Person {
-  public:
+public:
+    // getName() : Get user input for full name
     string getName() {
-      // Declare variable
-      string name;
-      
-      while (true) {
-        // Get user input
-        cout << "\nEnter Name (-1 to Exit): ";
-        getline(cin, name);
-  
-        // Check for sentinel
-        if (name == "-1") return "-1";
-  
-        // Validate input
-        if (regex_match(name, regex("[a-zA-Z\\- ]+"))) {
-          return name;
-        } else {
-          cout << "ERROR: Invalid Input - Name must be characters only (a-z or A-Z)\n\n";
+        // Declare variables
+        string name;
+
+        while (true) {
+            // Get user input
+            cout << "Enter Name (-1 to Exit): ";
+            getline(cin, name);
+
+            // Check for sentinel (-1)
+            if (name == "-1") return "-1";
+
+            // Validate input
+            if (regex_match(name, regex("[a-zA-Z\\- ]+"))) {
+                return name;
+            } else {
+                cout << "ERROR: Invalid Input - Name must be characters only (a-z or A-Z)\n\n";
+            }
         }
-      }
     }
 
+    // getPhone() : Get user input for last four digits of phone number
     string getPhone() {
-      // Declare variable
-      string phone;
-        
-      while (true) {
-        // Get user input
-        cout << "\nEnter Phone (-1 to Exit): ";
-        getline(cin, phone);
-    
-        // Check for sentinel
-        if (phone == "-1") return "-1";
-    
-        // Validate input
-        if (regex_match(phone, regex("[0-9]{4}"))) {
-          return phone;
-        } else {
-          cout << "ERROR: Invalid Input - Phone must be four digits (0-9)\n\n";
+        // Declare variables
+        string phone;
+
+        while (true) {
+            // Get user input
+            cout << "Enter Phone (-1 to Exit):";
+            getline(cin, phone);
+
+            // Check for sentinel (-1)
+            if (phone == "-1") return "-1";
+
+            // Validate input
+            if (regex_match(phone, regex("[0-9]{4}"))) {
+                return phone;
+            } else {
+                cout << "ERROR: Invalid Input - Phone must be four digits only (0-9)\n\n";
+            }
         }
-      }
     }
 };
 
-// Function Prototypes
-void processFile(string name, string phone);
+// FUNCTION PROTOTYPES
+void processFiles(string name, string phone);
 string getFirstName(string name);
-ofstream createOutputFile(string firstName, string phone);
-void writeHeader(ofstream &outfile, string name, string phone);
-string replaceText(string line);
-void copyAndModify(ifstream &infile, ofstream &outfile);
+void getOutputFile(const string &filename);
+string setOutputFile(string firstName, string phone);
+void setHeader(ofstream &outfile, string name, string phone);
+string setText(string line);
+void modifyFiles(ifstream &infile, ofstream &outfile);
 
-// processFile() : Wrapper function to process the file
-void processFile(string name, string phone) {
-  // Read file
-  ifstream infile("Germany_Brazil.txt");
+// WRAPPER - processFiles() : Wrapper function to process the input/output files
+void processFiles(string name, string phone) {
+    // Read "Germany_Brazil.txt" file
+    ifstream inFile("Germany_Brazil.txt");
 
-  // Check for file
-  if (!infile) {
-    cout << "ERROR: File Not Found - Could not find requested file.\n";
-    return;
-  }
+    // Check for "Germany_Brazil.txt" file
+    if (!inFile) {   // If fail, print an error message and return to main()
+        cout << "ERROR: File Not Found - Unable to open file for reading.\n\n";
+        return;
+    }
 
-  // Extract first name only
-  string firstName = getFirstName(name);
+    // Extract first name only (splits at first space)
+    string firstName = getFirstName(name);
 
-  // Create output file with first name and phone
-  ofstream outfile = setOutputFile(firstName, phone);
-  
-  // Write new header (name + phone) at top of file
-  setHeader(outfile, name, phone);
+    // Create output file with first name and last four digits of phone number (e.g., "Imani0123.txt")
+    string outFilename = setOutputFile(firstName, phone);
+    ofstream outFile(outFilename); // Open for writing
 
-  // Read and modify file
-  copyAndModify(infile, outfile);
+    // Write new header (full name + phone) at the top of the output file
+    setHeader(outFile, name, phone);
 
-  // Close files
-  infile.close();
-  outfile.close();
+    // Read the inFile "Germany_Brazil.txt" and modify the outFile "Imani0123.txt" 
+    modifyFiles(inFile, outFile);
 
-  cout << "File created successfully - " << firstName + phone + ".txt\n";
+    // Close both files
+    inFile.close();
+    outFile.close();
+
+    // Read and Output the outFile "Imani0123.txt"
+    getOutputFile(outFilename);
 }
 
-// main() : Program execution starts here
+// MAIN METHOD - main() : Program execution starts here
 int main() {
-  // Declare objects
-  Person p;
+    // Declare objects
+    Person p;
 
-  // Get user input
-  string name = p.getName();
-  if (name == "-1") return 0;
-  string phone = p.getPhone();
-  if (phone == "-1") return 0;
+    while (true) {
+        // Input/Process
+        string name = p.getName();
+        if (name == "-1") break;
+        string phone = p.getPhone();
+        if (phone == "-1") break;
 
-  // Process
-  processFile(name, phone);
+        // Read/Write/Output
+        processFiles(name, phone);
+    }
 
-  return 0;
+    return 0;
 }
 
-// getFirstName() : Get first name from the user input
+// HELPER FUNCTIONS (GET & SET)
+// getFirstName() : Get first name by getting substring prior first space from the initial user input
 string getFirstName(string name) {
-  return name.substr(0, name.find(" "));
+    size_t p = name.find(' ');
+    return (p==string::npos) ? name : name.substr(0,p);
 }
 
-// setOutputFile() : Set the new name of the output file
-ofstream setOutputFile(string firstName, string phone) {
-  ofstream outfile(firstName + phone + ".txt");
-  return outfile;
+// setOutputFile() : Set the name of the output file to the first name and last four digits (e.g. John1234.txt)
+string setOutputFile(string firstName, string phone) {
+    string filename = firstName + phone + ".txt";
+    ofstream outFile(filename);
+    return filename;
 }
 
-// setHeader() : Set the new header of the output file
-void setHeader(ofstream &outfile, string name, string phone) {
-  outfile << name << endl;
-  outfile << phone << endl << endl;
+// setHeader() : Set the header of the output file to the user's full name and last four digits
+void setHeader(ofstream &outFile, string name, string phone) {
+    outFile << name << endl;
+    outFile << phone << endl;
 }
 
-// replaceText() : Replace "Germany" with "Brazil"
-string replaceText(string line) {
-  int pos = line.find("Germany");
-  while (pos != string::npos) {
-    line.replace(pos, 7, "Brazil");
-  }
-  return line;
+// setText() : Set every instance of "Germany" to "Brazil"
+string setText(string line) {
+    size_t pos = line.find("Germany");
+    while (pos != string::npos) {
+        line.replace(pos, 7, "Brazil");
+        pos = line.find("Germany", pos + 6);
+    }
+    return line;
 }
 
-// copyAndModify() : Copy and modify the file content
-copyAndModify(ifstream & infile, ofstream &outfile) {
-  string line;
-  while (getline(inline, line)) {
-    line = replaceText(line);
-    outfile << line << endl;
-  }
+// modifyFiles() : Reads each line from the inFile, calls setText() and writes to the outFile
+void modifyFiles(ifstream &inFile, ofstream &outFile) {
+    string line;
+    while (getline(inFile, line)) {
+        line = setText(line);
+        outFile << line << endl;
+    }
+}
+
+// getOutputFile() : Reopens the outFile for reading and prints the filename, header, and modified body
+void getOutputFile(const string &filename) {
+    ifstream fin(filename);
+    if (!fin) {
+        cout << "ERROR: File Not Found - Unable to open file for reading.\n";
+        return;
+    }
+
+    string line;
+    // Output header of output file
+    cout << "----- START OF (" << filename << ") -----\n";
+    if (getline(fin, line)) cout << line << '\n';
+    if (getline(fin, line)) cout << line << "\n";
+
+	 // Output body of output file (and skip first two lines)
+    int skip = 0;
+    while (skip < 2 && getline(fin, line) && line.empty()) ++skip;
+    while (!fin.eof()) {
+        if (!line.empty()) cout << line << '\n'; // the first non-blank line we read
+        while (getline(fin, line)) cout << line << '\n';
+    }
+
+    cout << "----- END OF (" << filename << ") -----\n\n";
+
+    fin.close();
 }
