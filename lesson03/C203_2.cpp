@@ -1,11 +1,5 @@
 /*
-   Imani Hollie MM/DD/YYYY
-   5-Minute Interview: Title
-   Directions: Information
-*/
-
-/*
-	Imani Hollie MM/DD/YYYY
+	Imani Hollie 06/15/2026
 	Lesson # Lab: Title
 	Directions: Information
 */
