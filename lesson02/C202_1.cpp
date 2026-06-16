@@ -1,5 +1,5 @@
 /*
-   Imani Hollie 05/30/2026
+   Imani Hollie 06/08/2026
    Lesson 2 Lab: Table's Surface Area
    Directions: Use a class named Table to prompt the user to
    input the length and width of a table (in feet).
