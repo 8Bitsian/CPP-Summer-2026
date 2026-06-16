@@ -7,3 +7,5 @@
 📂 Files will be listed below:
 - `C203_1.cpp` | 5-Minute Interview
 - `C203_2.cpp` | Lab Assignment
+
+📹 Watch the [5‑minute interview](https://www.youtube.com/watch?v=negYYQdZIIc)<br/>
