@@ -15,59 +15,105 @@
             - Profit = Price - Cost
       3) Place both the Table class and the main() function in
          a single file for simplicity
+
+   Sample Output:
+   Enter the length of the table (in feet): 5
+   Enter the width of the table (in feet): 3
+
+   Surface Area: 15 square feet
+   Cost: $225.00
+   Customer Price: $375.00
+   Profit: $150.00
 */
 
 // HEADER
 #include <iostream>     // Provides console input/output
-#include <string>       // Enables use of std::string data type
-#include <regex>        // Enables regular expressions to check text
-#include <iomanip>      // Enables use of formatting tools (not used in this program)
-#include <cstdio>       // Enables C-style printing functions like printf
+#include <iomanip>      // Enables use of formatting tools (setprecision)
+#include <limits>       // Enables use of type-specific constant and traits
 using namespace std;    // Enables use of standard names w/out std:: prefix
 
 // CLASSES
-// ClassName{} : Description
+// Table{} : Table class collects object length and width
 class Table {
 private:
-	// methodName() : Description
-	datatype methodName() {
-		// Input/Validate/Return
-   }
+	// Define variables for dimensions of a table (rectangle) and initialize them to 0.0
+	double length = 0.0;
+	double width = 0.0;
+
+	// calcArea() : Return the Surface Area = Length * Width
+	double calcArea() const { return length * width; }
+
+	// calcCost() : Return the Cost = Surface Area * 15
+	double calcCost() const { return calcArea() * 15.0; }
+
+	// calcPrice() : Return the Price = Surface Area * 25
+	double calcPrice() const { return calcArea() * 25.0; }
+
+	// calcProfit() : Return the Profit = Price - Cost
+	double calcProfit() const { return calcPrice() - calcCost(); }
+
+	// clearInput() :  Helps clear bad input and the remainder of the line
+	static void clearInput() {
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	}
+
+	// checkInput() : Helps check if user input is a positive double
+	bool checkInput(const char* prompt, double &out) {
+		while (true) {
+			// Get user input
+			cout << prompt;
+
+			// Validate for non-numeric input
+			if (!(cin >> out)) {
+            if (cin.eof()) return false; // No more input
+            cout << "ERROR: Invalid Input - Value must be a positive number.\n\n";
+            clearInput();
+            continue;
+         }
+
+         // Check for sentinel to exit program
+         if (out == -1.0) return false;
+
+         // Validate for negative input
+         if (out <- 0.0) {
+            cout << "ERROR: Invalid Input - Value must be greater than 0.\n\n";
+            continue;
+         }
+
+         clearInput();
+         return true;
+		}
+	}
+
 public:
-	// methodName() : Description
-	datatype methodName() {
-		// Input/Validate/Return
+	// getLength() : Get user input for table length. Return false if sentinel (-1) or EOF
+	bool getLength() { return checkInput("Enter Length (in ft.) (-1 to Exit): ", length); }
+
+	// getWidth() : Get user input for table width. Return false if sentinel (-1) or EOF
+	bool getWidth() { return checkInput("Enter Width (in ft.) (-1 to Exit): ", width); }
+
+   // displayOutput() : Print the surface area and money values within two decimal places
+   void displayOutput() const {
+      cout << "----- TABLE PROFIT CALCULATOR -----\n";
+      cout << "Surface Area: " << calcArea() << " square feet\n";
+      cout << fixed << setprecision(2);
+      cout << "Cost:   $" << calcCost() << endl;
+      cout << "Price:  $" << calcPrice() << endl;
+      cout << "Profit: $" << calcProfit() << endl << endl;
    }
 };
-
-// FUNCTION PROTOTYPES
-datatype methodName(dataType parameter, etc.);
-
-// WRAPPER METHODS (PROCESS)
-// wrapMethod() : Description
-datatype wrapMethod() {
-	// Input/Validate/Return
-}
 
 // MAIN METHOD - main() : Program execution starts here
 int main() {
 	// Declare objects
+	Table t;
 
-   while (true) {
-      // Input/Process
-      // Read/Write/Output
+	// Input/Process
+   while (t.getLength() && t.getWidth()) {
+      // Output
+      t.displayOutput();
    }
 
    return 0;
-}
-
-// HELPER METHODS (GET & SET)
-// getMethod() : Description
-datatype getMethod() {
-	// Input/Validate/Return
-}
-
-// setMethod() : Description
-datatype setMethod() {
-	// Input/Validate/Return
 }
