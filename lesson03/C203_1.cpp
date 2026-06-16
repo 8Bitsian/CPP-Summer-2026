@@ -1,13 +1,10 @@
 /*
-   Imani Hollie MM/DD/YYYY
-   5-Minute Interview: Title
-   Directions: Information
-*/
-
-/*
-	Imani Hollie MM/DD/YYYY
-	Lesson # Lab: Title
-	Directions: Information
+   Imani Hollie 06/15/2026
+   5-Minute Interview: Area of Circles
+   Directions: To calculate the area of a circle with radii
+   of 1, 10, and 100, write a program that persoms the following:
+      1) Create a class called "Circle" with appropriate constructors, getters, and setters
+	  2) Use the constructors, getters, and setters in your test code to computer the area of a circle
 */
 
 // HEADER
