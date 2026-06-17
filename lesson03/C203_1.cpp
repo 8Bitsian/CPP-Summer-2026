@@ -65,10 +65,10 @@ public:
 
 	// displayOutput() : Print the radius and results of all calculations within two decimal places
    void displayOutput() const {
-      cout << "----- CIRCLE CALCULATOR -----\n";
+      cout << "\n----- CIRCLE CALCULATOR -----\n";
       cout << fixed << setprecision(2);
       cout << "Radius: " << radius << " units\n";
-      cout << "Area:   " << calcArea() << " units\n";
+      cout << "Area:   " << calcArea() << " units\n\n";
    }
 };
 
